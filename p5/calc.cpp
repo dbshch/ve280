@@ -1,5 +1,6 @@
 #include<iostream>
 #include"dlist.h"
+#include"dlist.cpp"
 #include<string>
 using namespace std;
 void err2() {
@@ -75,11 +76,6 @@ int main() {
 		else if (cmd == "/") {
 			if (!stk.isEmpty()) {
 				a = stk.removeFront();
-				if (*a == 0) {
-					cout << "Divide by zero\n";
-					stk.insertFront(a);
-					continue;
-				}
 			}
 			else {
 				err2(); continue;
@@ -89,6 +85,12 @@ int main() {
 			else {
 				stk.insertFront(a);
 				err2(); continue;
+			}
+			if (*a == 0) {
+				cout << "Divide by zero\n";
+				stk.insertFront(b);
+				stk.insertFront(a);
+				continue;
 			}
 			*a = *b / *a;
 			delete b;
@@ -105,11 +107,16 @@ int main() {
 			}
 		}
 		else if(cmd=="d"){
-			a = stk.removeFront();
-			int* t = new int;
-			*t = *a;
-			stk.insertFront(t);
-			stk.insertFront(a);
+			if (stk.isEmpty()) {
+				err2();
+			}
+			else {
+				a = stk.removeFront();
+				int* t = new int;
+				*t = *a;
+				stk.insertFront(t);
+				stk.insertFront(a);
+			}
 		}
 		else if (cmd == "r") {
 			if (!stk.isEmpty()) {
@@ -160,7 +167,7 @@ int main() {
 					cout << ' ' << *a;
 					tp.insertBack(a);
 				}
-				cout << endl;
+				cout << ' ' << endl;
 				stk = tp;
 			}
 		}

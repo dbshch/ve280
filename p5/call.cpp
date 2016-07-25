@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include"dlist.h"
+#include"dlist.cpp"
 using namespace std;
 
 struct usr
@@ -36,13 +37,15 @@ int main() {
 			pt.insertBack(tmp);
 		}
 	}
-	n = 0;
+	n = -1;
 	while (true)
 	{
 		if (busy<0 && si.isEmpty() && go.isEmpty() && pt.isEmpty() && re.isEmpty()) {
 			break;
 		}
-		cout << "Starting tick #" << n << endl;
+		cout << "Starting tick #" << n+1 << endl;
+		if(busy>=0) --busy;
+		++n;
 		while (!que.isEmpty())
 		{
 			tmp = que.removeFront();
@@ -55,34 +58,60 @@ int main() {
 				break;
 			}
 		}
-		if (!busy) {
+		if (busy<0) {
 			if (!pt.isEmpty()) {
 				tmp = pt.removeFront();
-				busy = tmp->dur;
-				cout << "Answering call from " << tmp->name << endl;
-				delete tmp;
+				if (tmp->tm <= n) {
+					busy += tmp->dur;
+					cout << "Answering call from " << tmp->name << endl;
+					delete tmp;
+					continue;
+				}
+				else
+				{
+					pt.insertFront(tmp);
+				}
 			}
-			else if (!go.isEmpty()) {
+			if (!go.isEmpty()) {
 				tmp = go.removeFront();
-				busy = tmp->dur;
-				cout << "Answering call from " << tmp->name << endl;
-				delete tmp;
+				if (tmp->tm <= n) {
+					busy += tmp->dur;
+					cout << "Answering call from " << tmp->name << endl;
+					delete tmp;
+					continue;
+				}
+				else
+				{
+					go.insertFront(tmp);
+				}
 			}
-			else if (!si.isEmpty()) {
+			if (!si.isEmpty()) {
 				tmp = si.removeFront();
-				busy = tmp->dur;
-				cout << "Answering call from " << tmp->name << endl;
-				delete tmp;
+				if (tmp->tm <= n) {
+					busy += tmp->dur;
+					cout << "Answering call from " << tmp->name << endl;
+					delete tmp;
+					continue;
+				}
+				else
+				{
+					si.insertFront(tmp);
+				}
 			}
-			else if (!re.isEmpty()) {
+			if (!re.isEmpty()) {
 				tmp = re.removeFront();
-				busy = tmp->dur;
-				cout << "Answering call from " << tmp->name << endl;
-				delete tmp;
+				if (tmp->tm <= n) {
+					busy += tmp->dur;
+					cout << "Answering call from " << tmp->name << endl;
+					delete tmp;
+					continue;
+				}
+				else
+				{
+					re.insertFront(tmp);
+				}
 			}
 		}
-		--busy;
-		++n;
 	}
 	return 0;
 }

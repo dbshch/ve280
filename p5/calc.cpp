@@ -19,7 +19,7 @@ int main() {
 		for (auto elt : cmd) {
 			if (!(elt - '0'<10 && elt - '0'>-1)) ++flg;
 		}
-		if ((!flg)||(flg==1&&cmd[0]=='-')) {
+		if ((!flg)||(flg==1&&cmd[0]=='-'&&cmd.size()>1)) {
 			stk.insertFront(new int(atoi(cmd.c_str())));
 		}
 		else if (cmd == "+") {

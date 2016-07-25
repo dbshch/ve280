@@ -80,16 +80,11 @@ Dlist<T>::Dlist() {
 
 template<class T>
 Dlist<T>::Dlist(const Dlist &l){
-	first = nullptr;
-	last = nullptr;
 	copyAll(l);
 }
 
 template<class T>
 Dlist<T>& Dlist<T>::operator=(const Dlist &l) {
-	removeAll();
-	first = nullptr;
-	last = nullptr;
 	copyAll(l);
 	return *this;
 }
@@ -110,24 +105,31 @@ void Dlist<T>::removeAll() {
 		}
 		delete first;
 		first = nullptr;
+		last = nullptr;
 	}
 }
 
 template<class T>
 void Dlist<T>::copyAll(const Dlist &l) {
+	removeAll();
 	node* tmp=l.first;
 	if (l.first!=nullptr) {
 		node *elem = new node;
+		node *pre;
 		first = elem;
 		elem->op = tmp->op;
 		elem->prev = tmp->prev;
-		elem->next = tmp->next;
+		elem->next = nullptr;
+		pre = elem;
 		while (tmp->next != nullptr) {
 			tmp = tmp->next;
-			node *elem = new node;
+			elem = new node;
+			pre->next = elem;
 			elem->op = tmp->op;
-			elem->prev = tmp->prev;
+			elem->prev = pre;
 			elem->next = tmp->next;
+			pre = elem;
 		}
+		last = elem;
 	}
 }

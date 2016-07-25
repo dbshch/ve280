@@ -145,7 +145,7 @@
     <ClInclude Include="dlist.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="calc.cpp" />
+    <ClCompile Include="call.cpp" />
     <ClCompile Include="dlist.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

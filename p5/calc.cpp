@@ -1,6 +1,5 @@
 #include<iostream>
 #include"dlist.h"
-#include"dlist.cpp"
 #include<string>
 using namespace std;
 void err2() {

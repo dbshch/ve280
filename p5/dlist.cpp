@@ -1,3 +1,7 @@
+#ifndef __DLIST_CPP__
+#define __DLIST_CPP__
+
+
 #include"dlist.h"
 
 template<class T>
@@ -133,3 +137,4 @@ void Dlist<T>::copyAll(const Dlist &l) {
 		last = elem;
 	}
 }
+#endif // __DLIST_CPP__

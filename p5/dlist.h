@@ -71,6 +71,6 @@ Note: this is here *only* because the g++ compiler needs to see the
 in which it is acceptable to #include a .cpp file.
 */
 
-//#include "dlist.cpp"
+#include "dlist.cpp"
 
 #endif /* __DLIST_H__ */

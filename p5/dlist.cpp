@@ -84,6 +84,8 @@ Dlist<T>::Dlist() {
 
 template<class T>
 Dlist<T>::Dlist(const Dlist &l){
+	first = nullptr;
+	last = nullptr;
 	copyAll(l);
 }
 
@@ -119,17 +121,21 @@ void Dlist<T>::copyAll(const Dlist &l) {
 	node* tmp=l.first;
 	if (l.first!=nullptr) {
 		node *elem = new node;
+		T* o = new T;
 		node *pre;
 		first = elem;
-		elem->op = tmp->op;
+		*o = *(tmp->op);
+		elem->op = o;
 		elem->prev = tmp->prev;
 		elem->next = nullptr;
 		pre = elem;
 		while (tmp->next != nullptr) {
 			tmp = tmp->next;
 			elem = new node;
+			T* o = new T;
 			pre->next = elem;
-			elem->op = tmp->op;
+			*o = *(tmp->op);
+			elem->op = o;
 			elem->prev = pre;
 			elem->next = tmp->next;
 			pre = elem;

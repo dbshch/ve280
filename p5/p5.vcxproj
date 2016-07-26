@@ -145,8 +145,8 @@
     <ClInclude Include="dlist.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="call.cpp" />
     <ClCompile Include="dlist.cpp" />
+    <ClCompile Include="test_all.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

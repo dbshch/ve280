@@ -23,7 +23,7 @@
     <ClCompile Include="dlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="call.cpp">
+    <ClCompile Include="test_all.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
